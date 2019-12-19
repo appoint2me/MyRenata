@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.a2mee.myrenata">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/renataicon"
+        android:label="@string/app_name"
+        android:noHistory="true"
+        android:roundIcon="@mipmap/renataicon"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".EnterIpActivity"></activity>
+        <activity
+            android:name=".com.net.activety.Splash_screen"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".com.net.activety.LoginActivity" />
+        <activity android:name=".com.net.activety.ProducationOrdar_count" />
+        <activity android:name=".com.net.activety.Finel_material_inspActivity" />
+        <activity android:name=".com.net.activety.Packing_list" />
+        <activity android:name=".com.net.activety.material_inspActivity" />
+        <activity android:name=".com.net.activety.Stagetwopackageing" />
+        <activity android:name=".com.net.activety.MainActivity" />
+        <activity android:name=".com.net.activety.Mainonline_AssemblieInspection" />
+        <activity android:name=".com.net.activety.Finel_QC" />
+        <activity android:name=".com.net.activety.Assembely_stage_inspecation" />
+        <activity android:name=".com.net.activety.Quaraqntine_srore" />
+        <activity android:name=".com.net.activety.MSendtoFG" />
+        <activity android:name=".com.net.activety.final_dispatch_list" />
+        <activity android:name=".com.net.adapiter.Config" />
+    </application>
+
+</manifest>
