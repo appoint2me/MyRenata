@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkError;
 import com.android.volley.NoConnectionError;
 import com.android.volley.ParseError;
@@ -286,10 +287,12 @@ public class Assembely_stage_inspecation extends Activity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        saveanotherost.setEnabled(false);
         JsonObjectRequest stageRequestInspect_Materialdate1 = new JsonObjectRequest(Request.Method.POST, SAVEANOTHER, userdatadata11, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
+                saveanotherost.setEnabled(true);
                 Log.d("@#@ggg#", response.toString());
                 progressDialog.dismiss();
                 System.out.print(response);
@@ -314,6 +317,7 @@ public class Assembely_stage_inspecation extends Activity {
 
 
                 } catch (JSONException e) {
+                    saveanotherost.setEnabled(true);
                     progressDialog.dismiss();
                     e.printStackTrace();
                 }
@@ -322,6 +326,7 @@ public class Assembely_stage_inspecation extends Activity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
+                saveanotherost.setEnabled(true);
                 progressDialog.dismiss();
 
                 if (error instanceof TimeoutError || error instanceof NoConnectionError) {
@@ -346,7 +351,10 @@ public class Assembely_stage_inspecation extends Activity {
             }
         });
         RequestQueue Inspect = Volley.newRequestQueue(getApplicationContext());
-        Inspect.add(stageRequestInspect_Materialdate1);
+        Inspect.add(stageRequestInspect_Materialdate1).setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));;
     }
 
     private void SAvedatato() {
@@ -373,9 +381,11 @@ public class Assembely_stage_inspecation extends Activity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        saveButtonost.setEnabled(false);
         JsonObjectRequest stageRequestInspect_Materialdateoo = new JsonObjectRequest(Request.Method.POST, SAVEDATA, userdatadata1, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                saveButtonost.setEnabled(true);
                 Log.d("@#@ggg#", response.toString());
                 progressDialog.hide();
 
@@ -403,12 +413,13 @@ public class Assembely_stage_inspecation extends Activity {
                     //  LotQty.setText(lotQty);
 
                 } catch (Exception e) {
-
+                    saveButtonost.setEnabled(true);
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                saveButtonost.setEnabled(true);
                 progressDialog.dismiss();
 
                 if (error instanceof TimeoutError || error instanceof NoConnectionError) {

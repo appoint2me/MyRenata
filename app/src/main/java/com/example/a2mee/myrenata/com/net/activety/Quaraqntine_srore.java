@@ -273,10 +273,12 @@ public class Quaraqntine_srore extends Activity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        saveanother.setEnabled(false);
         RequestQueue Inspect = Volley.newRequestQueue(getApplicationContext());
         JsonObjectRequest stageRequestInspect_Materialdateoo = new JsonObjectRequest(Request.Method.POST, SAVEANOTHER, userdatadata16, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                saveanother.setEnabled(true);
                 Log.d("@#@ggg#", response.toString());
                 progressDialog.hide();
 
@@ -299,13 +301,14 @@ public class Quaraqntine_srore extends Activity {
                     //   Reasonlist_of_onlineassembley();
                     //  LotQty.setText(lotQty);
                 } catch (Exception e) {
-
+                    saveanother.setEnabled(true);
                 }
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                saveanother.setEnabled(true);
                 progressDialog.dismiss();
 
                 if (error instanceof TimeoutError || error instanceof NoConnectionError) {
@@ -359,10 +362,12 @@ public class Quaraqntine_srore extends Activity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        Save.setEnabled(false);
         RequestQueue Inspect = Volley.newRequestQueue(getApplicationContext());
         JsonObjectRequest stageRequestInspect_Materialdateoo = new JsonObjectRequest(Request.Method.POST, SAVEDATA, userdatadata1, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                Save.setEnabled(true);
                 Log.d("@#@ggg#", response.toString());
                 progressDialog.hide();
                 System.out.print("hellow");
@@ -384,12 +389,13 @@ public class Quaraqntine_srore extends Activity {
                     RejectionRR.setAdapter(null);
                     //  LotQty.setText(lotQty);
                 } catch (Exception e) {
-
+                    Save.setEnabled(true);
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Save.setEnabled(true);
                 progressDialog.dismiss();
 
                 if (error instanceof TimeoutError || error instanceof NoConnectionError) {

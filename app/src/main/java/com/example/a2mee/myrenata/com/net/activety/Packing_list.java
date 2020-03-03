@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkError;
 import com.android.volley.NoConnectionError;
 import com.android.volley.ParseError;
@@ -143,10 +144,12 @@ public class Packing_list extends Activity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                Pikingsubmtv.setEnabled(false);
                 RequestQueue ddrq = Volley.newRequestQueue(getApplicationContext());
                 JsonObjectRequest stageRequestdatezz = new JsonObjectRequest(Request.Method.POST, MaterialSubmit_Url, userdatadata1, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        Pikingsubmtv.setEnabled(true);
                         Log.d("@#@ggg#", response.toString());
                         // Responseff= response.toString().substring(0,200);
                         try {
@@ -162,6 +165,7 @@ public class Packing_list extends Activity {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        Pikingsubmtv.setEnabled(true);
                         //   Log.d("@#@#", error.getMessage());
                         //int c = error.networkResponse.statusCode;
 
@@ -188,7 +192,10 @@ public class Packing_list extends Activity {
                     }
                 });
 
-                ddrq.add(stageRequestdatezz);
+                ddrq.add(stageRequestdatezz).setRetryPolicy(new DefaultRetryPolicy(
+                        0,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));;
             }
 
         }

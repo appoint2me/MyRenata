@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkError;
 import com.android.volley.NoConnectionError;
 import com.android.volley.ParseError;
@@ -431,10 +432,12 @@ public class Finel_material_inspActivity extends Activity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                saveanother.setEnabled(false);
                 JsonObjectRequest stageRequestInspect_Materialdate1 = new JsonObjectRequest(Request.Method.POST, Inspect_Material_URL, userdatadata11, new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
+                        saveanother.setEnabled(true);
                         Log.d("@#@ggg#", response.toString());
                         progressDialog.dismiss();
                         System.out.print(response);
@@ -460,6 +463,7 @@ public class Finel_material_inspActivity extends Activity {
                             LotQty.setText(Qtkk);
                             // Toast.makeText(Finel_material_inspActivity.this,"SUCCESS" , Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
+                            saveanother.setEnabled(true);
                             Toast.makeText(Finel_material_inspActivity.this, "Something  Exception !!!", Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
                             e.printStackTrace();
@@ -469,7 +473,7 @@ public class Finel_material_inspActivity extends Activity {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        saveanother.setEnabled(true);
                         if (error instanceof TimeoutError || error instanceof NoConnectionError) {
                             Toast.makeText(getApplicationContext(), "TimeoutError !!!", Toast.LENGTH_LONG).show();
 
@@ -494,7 +498,10 @@ public class Finel_material_inspActivity extends Activity {
                     }
                 });
                 RequestQueue Inspect = Volley.newRequestQueue(getApplicationContext());
-                Inspect.add(stageRequestInspect_Materialdate1);
+                Inspect.add(stageRequestInspect_Materialdate1).setRetryPolicy(new DefaultRetryPolicy(
+                        0,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
             }
         } else {
@@ -533,9 +540,11 @@ public class Finel_material_inspActivity extends Activity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                saveButton.setEnabled(false);
                 JsonObjectRequest stageRequestInspect_Materialdateoo = new JsonObjectRequest(Request.Method.POST, Inspect_Material_URL, userdatadata1, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        saveButton.setEnabled(true);
                         Log.d("@#@ggg#", response.toString());
                         progressDialog.hide();
                         try {
@@ -565,12 +574,14 @@ public class Finel_material_inspActivity extends Activity {
                             //barcodedataaf.setText("");
                             //  LotQty.setText(lotQty);
                         } catch (Exception e) {
+                            saveButton.setEnabled(true);
                             Toast.makeText(Finel_material_inspActivity.this, "Something  Exception !!!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        saveButton.setEnabled(true);
                         progressDialog.dismiss();
                         if (error instanceof TimeoutError || error instanceof NoConnectionError) {
                             Toast.makeText(getApplicationContext(), "TimeoutError !!!", Toast.LENGTH_LONG).show();

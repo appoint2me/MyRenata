@@ -420,6 +420,7 @@ public class Stagetwopackageing extends Activity {
                     e.printStackTrace();
                 }
             }
+            Stagesubmt.setEnabled(false);
             JSONObject usata1 = new JSONObject();
             try {
                 progressDialog.dismiss();
@@ -432,6 +433,7 @@ public class Stagetwopackageing extends Activity {
             JsonObjectRequest ffffff = new JsonObjectRequest(Request.Method.POST, packaging_addStage, usata1, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
+                    Stagesubmt.setEnabled(true);
                     Log.d("@#@ggg#", response.toString());
                     progressDialog.dismiss();
                     try {
@@ -443,6 +445,7 @@ public class Stagetwopackageing extends Activity {
                         material_info_adapter.notifyDataSetChanged();
                         Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
                     } catch (Exception e) {
+                        Stagesubmt.setEnabled(true);
                         Toast.makeText(getApplicationContext(), "Exception", Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                         progressDialog.dismiss();
@@ -455,6 +458,7 @@ public class Stagetwopackageing extends Activity {
 
                 @Override
                 public void onErrorResponse(VolleyError error) {
+                    Stagesubmt.setEnabled(true);
                     progressDialog.dismiss();
                     Log.d("@#@#", error.getMessage());
                     //int c = error.networkResponse.statusCode;

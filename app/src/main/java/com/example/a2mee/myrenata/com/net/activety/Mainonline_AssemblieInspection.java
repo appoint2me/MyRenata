@@ -350,10 +350,12 @@ public class Mainonline_AssemblieInspection extends Activity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                saveanothero.setEnabled(false);
                 JsonObjectRequest stageRequestInspect_Materialdate1 = new JsonObjectRequest(Request.Method.POST, SAVEANOTHER, userdatadata11, new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
+                        saveanothero.setEnabled(true);
                         Log.d("@#@ggg#", response.toString());
                         progressDialog.dismiss();
                         System.out.print(response);
@@ -381,6 +383,7 @@ public class Mainonline_AssemblieInspection extends Activity {
 
 
                         } catch (JSONException e) {
+                            saveanothero.setEnabled(true);
                             progressDialog.dismiss();
                             e.printStackTrace();
                         }
@@ -389,6 +392,7 @@ public class Mainonline_AssemblieInspection extends Activity {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        saveanothero.setEnabled(true);
                         String errorMessage="";
                         progressDialog.dismiss();
                         if (error instanceof TimeoutError || error instanceof NoConnectionError) {
@@ -449,9 +453,11 @@ public class Mainonline_AssemblieInspection extends Activity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                saveButtono.setEnabled(false);
                 JsonObjectRequest stageRequestInspect_Materialdateoo = new JsonObjectRequest(Request.Method.POST, SAVEDATA, userdatadata1, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        saveButtono.setEnabled(true);
                         Log.d("@#@ggg#", response.toString());
                         progressDialog.hide();
 
@@ -479,13 +485,13 @@ public class Mainonline_AssemblieInspection extends Activity {
                             //  LotQty.setText(lotQty);
 
                         } catch (Exception e) {
-
+                            saveButtono.setEnabled(true);
                         }
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        saveButtono.setEnabled(true);
                         progressDialog.dismiss();
                         if (error instanceof TimeoutError || error instanceof NoConnectionError) {
                             Toast.makeText(getApplicationContext(), "TimeoutError !!!", Toast.LENGTH_LONG).show();

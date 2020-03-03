@@ -382,10 +382,12 @@ public class Finel_QC extends Activity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            saveanotherost.setEnabled(false);
             RequestQueue Inspect = Volley.newRequestQueue(getApplicationContext());
             JsonObjectRequest stageRequestInspect_Materialdate1 = new JsonObjectRequest(Request.Method.POST, SAVEANOTHER, userdatadata11, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
+                    saveanotherost.setEnabled(true);
                     Log.d("@#@ggg#", response.toString());
                     progressDialog.dismiss();
                     System.out.print(response);
@@ -408,6 +410,7 @@ public class Finel_QC extends Activity {
                         LotQtyost.setText(Qtkk);
                         // Toast.makeText(Finel_material_inspActivity.this, massage, Toast.LENGTH_SHORT).show();
                     } catch (JSONException e) {
+                        saveanotherost.setEnabled(true);
                         progressDialog.dismiss();
                         e.printStackTrace();
                     }
@@ -415,7 +418,7 @@ public class Finel_QC extends Activity {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-
+                    saveanotherost.setEnabled(true);
                     progressDialog.dismiss();
                     if (error instanceof TimeoutError || error instanceof NoConnectionError) {
                         Toast.makeText(getApplicationContext(), "TimeoutError !!!", Toast.LENGTH_LONG).show();
@@ -478,10 +481,12 @@ public class Finel_QC extends Activity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            saveButtonost.setEnabled(false);
             RequestQueue Inspect = Volley.newRequestQueue(getApplicationContext());
             JsonObjectRequest stageRequestInspect_Materialdateoo = new JsonObjectRequest(Request.Method.POST, SAVEDATA, userdatadata1, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
+                    saveButtonost.setEnabled(true);
                     Log.d("@#@ggg#", response.toString());
                     progressDialog.dismiss();
 
@@ -509,6 +514,7 @@ public class Finel_QC extends Activity {
                         //  LotQty.setText(lotQty);
 
                     } catch (Exception e) {
+                        saveButtonost.setEnabled(true);
                         progressDialog.dismiss();
 
                     }
@@ -517,7 +523,7 @@ public class Finel_QC extends Activity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
 
-
+                    saveButtonost.setEnabled(true);
                     progressDialog.dismiss();
 
                     if (error instanceof TimeoutError || error instanceof NoConnectionError) {
